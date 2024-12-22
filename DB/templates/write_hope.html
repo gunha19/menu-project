@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>희망사항 작성</title>
+    <style>
+        /* 전역 스타일 */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* 메시지 스타일 */
+        .message {
+            color: #ff6347;
+            font-size: 1rem;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        /* 폼 컨테이너 스타일 */
+        .form-container {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+
+        /* 폼 타이틀 스타일 */
+        .form-title {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: #333;
+            text-align: center;
+        }
+
+        /* 폼 그룹 스타일 */
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        /* 라벨 스타일 */
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            color: #555;
+        }
+
+        /* 입력 필드 스타일 */
+        .form-input, .form-textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+            background-color: #f9f9f9;
+            transition: border-color 0.3s;
+        }
+
+        /* 입력 필드 포커스 스타일 */
+        .form-input:focus, .form-textarea:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+
+        /* 텍스트 영역 스타일 */
+        .form-textarea {
+            height: 100px;
+            resize: none;
+        }
+
+        /* 버튼 스타일 */
+        .form-button {
+            width: 100%;
+            padding: 0.8rem;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        /* 버튼 호버 스타일 */
+        .form-button:hover {
+            background-color: #0056b3;
+        }
+
+        /* 버튼 포커스 스타일 */
+        .form-button:focus {
+            outline: none;
+            background-color: #004080;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <form action="/write_done" method="POST" class="styled-form">
+            <h2 class="form-title">희망사항 작성</h2>
+            <div class="form-group">
+                <!-- 제목 입력란, placeholder 사용 -->
+                <label for="title" class="form-label">제목</label>
+                <input type="text" placeholder="제목을 입력해주세요" name="title" id="title" class="form-input" required>
+            </div>
+
+            <div class="form-group">
+                <!-- 희망사항 내용 입력란, placeholder 사용 -->
+                <label for="contents" class="form-label">희망사항</label>
+                <textarea placeholder="희망사항을 입력해주세요. 예: ~가 나오면 좋겠다" name="contents" id="contents" class="form-textarea"></textarea>
+            </div>
+
+            <button type="submit" class="form-button">희망사항 보내기</button>
+        </form>
+    </div>
+</body>
+</html>

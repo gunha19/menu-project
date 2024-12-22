@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>급식 정보</title>
+    <style>
+        /* 기본 스타일 설정 */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        header {
+            background-color: #007bff;
+            color: #fff;
+            padding: 15px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin: 0;
+        }
+
+        /* 사용자 상태 텍스트 스타일 */
+        .user-message {
+            font-weight: bold;
+            font-size: 1em;
+            color: #333;
+            margin-top: 10px;
+        }
+
+        .logout-link {
+            display: block;
+            text-decoration: none;
+            color: #007bff;
+            font-size: 1em;
+            margin-top: 10px;
+        }
+
+        /* 버튼 컨테이너 */
+        .button-container {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        /* 버튼 스타일 */
+        .user-links a {
+            text-decoration: none;
+            color: #fff;
+            background-color: #007bff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin: 0 10px;
+            text-align: center;
+            flex: 1;
+            font-size: 1.2em; /* 글자 크기 증가 */
+        }
+
+        .user-links a:hover {
+            background-color: #0056b3;
+        }
+
+        /* 비로그인 상태에서 버튼들 올리기 */
+        .user-links {
+            margin-top: 0; /* margin-top을 0으로 설정 */
+        }
+
+        .user-links a {
+            margin-top: 8px; /* 버튼을 조금 올리기 */
+        }
+
+        /* 급식 메뉴 버튼 스타일 */
+        button {
+            background-color: #f9f9f9;
+            border: 1px solid #ccc;
+            padding: 8px 15px;
+            margin: 5px;
+            cursor: pointer;
+            font-size: 0.9em; /* 버튼 글자 크기 감소 */
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #007bff;
+            color: #fff;
+            border: 1px solid #007bff;
+        }
+
+        /* 급식 메뉴 내용 스타일 */
+        p {
+            font-size: 1.2em;
+            line-height: 1.5;
+        }
+
+        strong {
+            color: #007bff;
+        }
+
+        /* 급식 항목을 박스에 넣기 */
+        .meal-box {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin: 10px 0;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .meal-box h3 {
+            margin: 0;
+            font-size: 1.5em;
+            color: #007bff;
+        }
+
+        .meal-box p {
+            font-size: 1.2em;
+            color: #333;
+        }
+
+        /* 반응형 디자인 */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            h2, h3 {
+                font-size: 1.5em;
+            }
+
+            button {
+                font-size: 0.8em; /* 버튼 글자 크기 감소 */
+                padding: 8px 15px;
+            }
+
+            .user-links a {
+                font-size: 1em; /* 반응형에서 버튼 글자 크기 */
+                padding: 8px;
+            }
+        }
+
+        /* 컨테이너 */
+        .container {
+            padding: 20px;
+        }
+
+        /* 희망사항 목록 두 줄 텍스트 */
+        .two-line-text {
+            white-space: pre-wrap; /* 줄 바꿈 강제 */
+        }
+
+        /* 로그인, 회원가입 버튼을 희망사항 목록 보기와 맞게 조금 더 아래로 내리기 */
+        .user-links a {
+            margin-top: 8px; /* 조금 더 아래로 내리기 */
+        }
+
+        /* 요일을 선택하세요 텍스트 스타일 */
+        .select-day-text {
+            text-align: center; /* 가운데 정렬 */
+            font-size: 0.9em; /* 텍스트 크기 더 감소 */
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>서령고 급식 정보</h1>
+    </header>
+
+    <div class="container">
+        {% if user != "Login" %}
+            <!-- 로그인 후 상태 -->
+            <span class="user-message">{{ user }}님, 안녕하세요!</span>  <!-- "희망사항 작성하기" 위로 이동 -->
+            <a href="{{ url_for('logout') }}" class="logout-link">로그아웃</a>
+
+            <div class="button-container user-links">
+                <a href="{{ url_for('post_list') }}" class="two-line-text">희망사항<br>목록 보기</a>
+                <a href="{{ url_for('write') }}" class="two-line-text">희망사항<br>작성하기</a>
+            </div>
+        {% else %}
+            <!-- 비로그인 상태 -->
+            <div class="button-container user-links">
+                <a href="{{ url_for('login') }}">로그인</a>
+                <a href="{{ url_for('signin') }}">회원가입</a>
+                <a href="{{ url_for('post_list') }}" class="two-line-text">희망사항<br>목록 보기</a>
+            </div>
+        {% endif %}
+
+        <h2>이번 주 급식 메뉴</h2>
+
+        <form method="POST" action="{{ url_for('index') }}">
+            <div class="select-day-text">
+                <h3>요일을 선택하세요:</h3>
+                {% for day, date in week_dates %}
+                    <button type="submit" name="date" value="{{ date.strftime('%Y-%m-%d') }}">{{ day }}</button>
+                {% endfor %}
+            </div>
+        </form>
+
+        <h3>급식 메뉴 ({{ meal_data['date'] }})</h3>
+        <div class="meal-box">
+            <h3>조식</h3>
+            <p>{{ meal_data['breakfast'] }}</p>
+        </div>
+        <div class="meal-box">
+            <h3>중식</h3>
+            <p>{{ meal_data['lunch'] }}</p>
+        </div>
+        <div class="meal-box">
+            <h3>석식</h3>
+            <p>{{ meal_data['dinner'] }}</p>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>급식 희망사항 제출</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e9f3f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            box-sizing: border-box;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 24px;
+            color: #005a9e;
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-size: 16px;
+            color: #333333;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            color: #333333;
+            border: 1px solid #a9d0e6;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+            background-color: #f7fbfd;
+            transition: border 0.3s ease, background-color 0.3s ease;
+        }
+
+        input[type="text"]:focus,
+        textarea:focus {
+            border: 1px solid #005a9e;
+            background-color: #ffffff;
+            outline: none;
+        }
+
+        textarea {
+            height: 180px; /* 세로 길이를 늘림 */
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #005a9e;
+            color: #ffffff;
+            font-size: 18px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #00457c;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #555555;
+        }
+
+        /* 반응형 디자인 */
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+
+            h2 {
+                font-size: 20px;
+            }
+
+            input[type="text"],
+            textarea {
+                font-size: 14px;
+                padding: 10px;
+            }
+
+            button {
+                font-size: 16px;
+                padding: 10px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>급식 희망사항 제출</h2>
+    <form action="/submit_wish" method="POST">
+        <label for="title">제목</label>
+        <input type="text" id="title" name="title" placeholder="제목을 입력하세요." required>
+        
+        <label for="wish">희망사항</label>
+        <textarea id="wish" name="wish" placeholder="급식 희망사항을 입력하세요." required></textarea>
+        
+        <button type="submit">제출</button>
+    </form>
+</div>
+
+<div class="footer">
+</div>
+
+</body>
+</html>

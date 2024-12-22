@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+
+{% block message %}
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <p style="color: red; text-align: center; font-weight: bold;">{{ messages[0][1] }}</p>
+        {% endif %}
+    {% endwith %}
+{% endblock message %}
+
+{% block contents %}
+    <div class="signup-container">
+        <h2>회원가입</h2>
+        <form action="{{ url_for('signin_done') }}" method="get">
+            <div class="input-group">
+                <label for="email">이메일</label>
+                <input type="email" name="email" id="email" placeholder="이메일을 입력하세요" required>
+            </div>
+
+            <div class="input-group">
+                <label for="id">아이디</label>
+                <input type="text" name="id" id="id" placeholder="아이디를 입력하세요" required>
+            </div>
+
+            <div class="input-group">
+                <label for="pwd">비밀번호</label>
+                <input type="password" name="pwd" id="pwd" placeholder="비밀번호를 입력하세요" required>
+            </div>
+
+            <div class="input-group">
+                <label for="name">이름</label>
+                <input type="text" name="name" id="name" placeholder="이름을 입력하세요" required>
+            </div>
+
+            <button type="submit" class="submit-btn">회원가입</button>
+        </form>
+    </div>
+
+    <style>
+        /* 회원가입 페이지 스타일 */
+        .signup-container {
+            max-width: 90%;
+            width: 350px;  /* 최대 너비를 줄임 */
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: #555;
+        }
+
+        .input-group input {
+            width: 100%;
+            max-width: 320px; /* 입력칸의 길이 줄이기 */
+            padding: 10px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            outline: none;
+        }
+
+        .input-group input:focus {
+            border-color: #007bff;
+        }
+
+        button.submit-btn {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button.submit-btn:hover {
+            background-color: #0056b3;
+        }
+
+        p {
+            font-size: 14px;
+            text-align: center;
+            color: #777;
+        }
+
+        /* 반응형 디자인 - 모바일 화면 */
+        @media (max-width: 600px) {
+            .signup-container {
+                width: 90%;
+                padding: 15px;
+            }
+
+            h2 {
+                font-size: 1.5em;
+            }
+
+            .input-group input {
+                font-size: 16px;
+                padding: 12px;
+                max-width: 90%;  /* 모바일 화면에서 더 좁게 */
+            }
+
+            button.submit-btn {
+                font-size: 18px;
+                padding: 12px;
+            }
+        }
+    </style>
+{% endblock contents %}

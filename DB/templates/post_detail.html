@@ -1,0 +1,154 @@
+{% extends "base.html" %}
+
+{% block user %}
+{% endblock user %}
+
+{% block contents %}
+<div class="post-details-wrapper">
+    <!-- 게시물 제목, 내용, 시간 표시 -->
+    <div class="post-details-header">
+        <h1 class="post-title">{{ post['title'] }}</h1>
+        <p class="post-time">작성 시간: {{ post['time'] }}</p>
+    </div>
+
+    <div class="post-details-content">
+        <p>{{ post['contents'] }}</p>
+    </div>
+
+    <!-- 희망사항 작성하기 버튼 -->
+    <div class="write-btn-container">
+        <a href="{{ url_for('write') }}" class="write-btn">희망사항 작성하기</a>
+    </div>
+</div>
+
+<!-- HOMEPAGE 버튼을 가리기 위한 도형 -->
+<div class="cover-shape"></div>
+
+<style>
+    /* 전체 배경 */
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Helvetica Neue', Arial, sans-serif;
+        background: linear-gradient(to bottom, #f0f4ff, #ffffff);
+        color: #444;
+    }
+
+    /* 컨테이너 스타일 */
+    .post-details-wrapper {
+        max-width: 600px;
+        margin: 50px auto;
+        padding: 20px;
+        background: #ffffff;
+        border-radius: 15px;
+        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    /* HOMEPAGE 버튼 스타일 */
+    .home-link-container {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .home-link {
+        font-size: 18px;
+        color: #0056b3;
+        text-decoration: none;
+        font-weight: bold;
+        border: 2px solid #0056b3;
+        padding: 8px 16px;
+        border-radius: 30px;
+        transition: all 0.3s ease;
+        display: inline-block;
+    }
+
+    .home-link:hover {
+        color: #ffffff;
+        background-color: #0056b3;
+    }
+
+    /* 왼쪽 상단에 배경색과 같은 도형 */
+    .cover-shape {
+        position: fixed; /* 화면 왼쪽 상단에 고정 */
+        top: 0;
+        left: 0;
+        width: 100px;
+        height: 50px;
+        background-color: #f0f4ff;
+        z-index: 1000;
+    }
+
+    /* 헤더 스타일 */
+    .post-details-header {
+        border-bottom: 1px solid #ddd;
+        padding-bottom: 15px;
+        margin-bottom: 20px;
+    }
+
+    .post-title {
+        font-size: 26px; /* 글씨 크기를 조금 줄여서 더 잘 보이게 */
+        font-weight: 700;
+        margin: 0;
+        color: #333;
+    }
+
+    .post-time {
+        font-size: 14px;
+        color: #888;
+        margin-top: 5px;
+    }
+
+    /* 내용 스타일 */
+    .post-details-content {
+        line-height: 1.6; /* 세로 간격 조정 */
+        padding: 15px 0; /* 패딩을 줄여서 텍스트 영역을 적당히 줄임 */
+        font-size: 17px; /* 글씨 크기 적당히 키움 */
+        color: #333;
+        height: 150px; /* 텍스트 영역을 줄임 */
+        overflow-y: auto; /* 내용이 넘칠 경우 스크롤 추가 */
+    }
+
+    /* 버튼 스타일 */
+    .write-btn-container {
+        text-align: center;  /* 버튼을 가운데로 정렬 */
+        margin-top: 20px;
+    }
+
+    .write-btn {
+        background: #0056b3;
+        color: #ffffff;
+        padding: 12px 24px;
+        font-size: 16px;
+        font-weight: bold;
+        text-decoration: none;
+        border-radius: 30px;
+        transition: background 0.3s ease;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .write-btn:hover {
+        background: #003d80;
+    }
+
+    /* 반응형 디자인 */
+    @media (max-width: 600px) {
+        .post-title {
+            font-size: 24px;
+        }
+
+        .post-details-content {
+            font-size: 16px;
+        }
+
+        .write-btn {
+            font-size: 14px;
+            padding: 10px 20px;
+        }
+
+        .home-link {
+            font-size: 14px;
+            padding: 6px 12px;
+        }
+    }
+</style>
+{% endblock contents %}

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>급식 정보</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        .meal-section {
+            margin-bottom: 20px;
+        }
+        .date-button {
+            margin-right: 10px;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .date-button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>서령고등학교 급식 정보</h1>
+    <h2>{{ meal_data.date }}</h2>
+
+    <!-- 요일별 버튼 -->
+    <form method="POST" action="/">
+        <div>
+            {% for date in week_dates %}
+                <button type="submit" name="date" value="{{ date.strftime('%Y-%m-%d') }}" class="date-button">
+                    {% if date.strftime('%A') == 'Monday' %} 월요일
+                    {% elif date.strftime('%A') == 'Tuesday' %} 화요일
+                    {% elif date.strftime('%A') == 'Wednesday' %} 수요일
+                    {% elif date.strftime('%A') == 'Thursday' %} 목요일
+                    {% elif date.strftime('%A') == 'Friday' %} 금요일
+                    {% endif %}
+                </button>
+            {% endfor %}
+        </div>
+    </form>
+
+    <!-- 급식 정보 출력 -->
+    <div class="meal-section">
+        <h3>조식</h3>
+        <p>{{ meal_data.breakfast }}</p>
+    </div>
+    <div class="meal-section">
+        <h3>중식</h3>
+        <p>{{ meal_data.lunch }}</p>
+    </div>
+    <div class="meal-section">
+        <h3>석식</h3>
+        <p>{{ meal_data.dinner }}</p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>급식 정보</title>
+    <style>
+        /* 기본 스타일 설정 */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f7f8fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* 제목 스타일 */
+        h1 {
+            text-align: center;
+            color: #007bff;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+
+        h3 {
+            color: #555;
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        /* 로그인 메시지 스타일 */
+        .user-message {
+            text-align: center;
+            font-size: 1em; /* 텍스트 크기 조정 */
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        /* 버튼 스타일 */
+        .date-button {
+            margin: 5px;
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .date-button:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+
+        /* 급식 정보 섹션 */
+        .meal-section {
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        p {
+            font-size: 1.2em;
+            margin: 0;
+            color: #333;
+        }
+
+        /* 반응형 디자인 */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            h2 {
+                font-size: 1.5em;
+            }
+
+            .date-button {
+                padding: 8px 12px;
+                font-size: 0.9em;
+            }
+
+            p {
+                font-size: 1em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.8em;
+            }
+
+            h2 {
+                font-size: 1.2em;
+            }
+
+            .meal-section {
+                padding: 10px 15px;
+            }
+
+            .user-message {
+                font-size: 0.9em; /* 모바일에서 텍스트 크기 더 줄임 */
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>서령고등학교 급식 정보</h1>
+    {% if user %}
+        <div class="user-message">{{ user }}님, 안녕하세요!</div>
+    {% endif %}
+    <h2>{{ meal_data.date }}</h2>
+
+    <!-- 요일별 버튼 -->
+    <form method="POST" action="/">
+        <div style="text-align: center; margin-bottom: 20px;">
+            {% for date in week_dates %}
+                <button type="submit" name="date" value="{{ date.strftime('%Y-%m-%d') }}" class="date-button">
+                    {% if date.strftime('%A') == 'Monday' %} 월요일
+                    {% elif date.strftime('%A') == 'Tuesday' %} 화요일
+                    {% elif date.strftime('%A') == 'Wednesday' %} 수요일
+                    {% elif date.strftime('%A') == 'Thursday' %} 목요일
+                    {% elif date.strftime('%A') == 'Friday' %} 금요일
+                    {% endif %}
+                </button>
+            {% endfor %}
+        </div>
+    </form>
+
+    <!-- 급식 정보 출력 -->
+    <div class="meal-section">
+        <h3>조식</h3>
+        <p>{{ meal_data.breakfast }}</p>
+    </div>
+    <div class="meal-section">
+        <h3>중식</h3>
+        <p>{{ meal_data.lunch }}</p>
+    </div>
+    <div class="meal-section">
+        <h3>석식</h3>
+        <p>{{ meal_data.dinner }}</p>
+    </div>
+</body>
+</html>

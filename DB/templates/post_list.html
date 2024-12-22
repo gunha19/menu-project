@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+
+{% block user %}
+{% endblock user %}
+
+{% block contents %}
+    <div class="post-list">
+        {% if length == 0 %}
+            <p>글 좀 써주세요</p>
+        {% else %}
+            {% for pid, post in post_list|list %}
+                <a href="{{ url_for('post', pid=pid) }}" class="post-item">
+                    <div class="post-content">
+                        <div class="post-header">
+                            <strong class="post-title">{{ post['title'] }}</strong>
+                            <span class="post-pid">PID: {{ pid }}</span>
+                        </div>
+                        <p class="post-time">{{ post['time'] }}</p>
+                    </div>
+                </a>
+            {% endfor %}
+        {% endif %}
+    </div>
+{% endblock contents %}
+
+{% block styles %}
+    <style>
+        /* 기본 스타일 */
+        .post-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            padding: 16px;
+            max-width: 100%;
+        }
+
+        .post-item {
+            display: block;
+            background-color: #ffffff;
+            border-radius: 8px;
+            padding: 16px;
+            text-decoration: none;
+            color: #333;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        /* 호버 효과 */
+        .post-item:hover {
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            transform: translateY(-5px);
+            background-color: #f9f9f9;
+        }
+
+        /* 제목 스타일 */
+        .post-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 8px;
+        }
+
+        /* PID 스타일 */
+        .post-pid {
+            font-size: 0.95em;
+            color: #7f8c8d;
+            font-weight: 500;
+        }
+
+        /* 시간 스타일 */
+        .post-time {
+            font-size: 0.9em;
+            color: #95a5a6;
+            margin-top: 6px;
+        }
+
+        /* 헤더 스타일 */
+        .post-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        /* 반응형 디자인 - 모바일 화면 */
+        @media (max-width: 600px) {
+            .post-item {
+                padding: 12px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+                margin: 10px;
+            }
+
+            .post-title {
+                font-size: 1.1em;
+            }
+
+            .post-pid {
+                font-size: 0.85em;
+            }
+
+            .post-time {
+                font-size: 0.85em;
+            }
+
+            .post-header {
+                flex-direction: column;
+                align-items: flex-start;
+                margin-bottom: 10px;
+            }
+
+            .post-title {
+                margin-bottom: 4px;
+            }
+
+            .post-pid {
+                margin-bottom: 4px;
+            }
+        }
+    </style>
+{% endblock styles %}

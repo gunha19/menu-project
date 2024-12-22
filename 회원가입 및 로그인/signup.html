@@ -1,0 +1,80 @@
+
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원가입</title>
+</head>
+<body>
+    <div class="container">
+        <h2>회원가입</h2>
+        <form action="#" method="post">
+            <!-- 이름 입력 -->
+            <label for="name">이름</label>
+            <input 
+                id="name" 
+                type="text" 
+                name="name" 
+                placeholder="이름을 입력하세요" 
+                onfocus="this.placeholder=''" 
+                onblur="this.placeholder='이름을 입력하세요'" 
+                required>
+            
+            <!-- 이메일 입력 -->
+            <label for="email">이메일</label>
+            <input 
+                id="email" 
+                type="email" 
+                name="email" 
+                placeholder="이메일을 입력하세요" 
+                onfocus="this.placeholder=''" 
+                onblur="this.placeholder='이메일을 입력하세요'" 
+                required>
+            
+            <!-- 이메일 인증번호 입력 -->
+            <label for="email-code">이메일 인증번호</label>
+            <input 
+                id="email-code" 
+                type="text" 
+                name="email-code" 
+                placeholder="인증번호를 입력하세요" 
+                onfocus="this.placeholder=''" 
+                onblur="this.placeholder='인증번호를 입력하세요'" 
+                required>
+            
+            <!-- 비밀번호 입력 -->
+            <label for="password">비밀번호</label>
+            <input 
+                id="password" 
+                type="password" 
+                name="password" 
+                placeholder="비밀번호를 입력하세요" 
+                onfocus="this.placeholder=''" 
+                onblur="this.placeholder='비밀번호를 입력하세요'" 
+                required>
+            
+            <!-- 비밀번호 확인 입력 -->
+            <label for="confirm-password">비밀번호 확인</label>
+            <input 
+                id="confirm-password" 
+                type="password" 
+                name="confirm-password" 
+                placeholder="비밀번호를 다시 입력하세요" 
+                onfocus="this.placeholder=''" 
+                onblur="this.placeholder='비밀번호를 다시 입력하세요'" 
+                required>
+            
+            <!-- 동의 체크박스 -->
+            <label for="agreement">
+                <input id="agreement" type="checkbox" name="agreement" required>
+                급식에 대해 쌍욕을 하지 않을 것을 맹세합니다.
+            </label>
+            
+            <!-- 제출 버튼 -->
+            <input type="submit" value="회원가입">
+        </form>
+    </div>
+</body>
+</html>

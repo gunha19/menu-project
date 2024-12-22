@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>서령고등학교 급식 희망사항 사이트</title>
+
+    <!-- 스타일 블록 추가 -->
+    {% block styles %}
+    <!-- 기본 스타일 추가 -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    {% endblock %}
+</head>
+
+<body>
+    {% block message %}
+    {% endblock message %}
+    <header>
+        <a href="{{url_for('index')}}"><p>HOMEPAGE</p></a>
+        {% block user %}
+        {% endblock user %}
+    </header>
+
+    {% block contents %}
+    {% endblock contents %}
+  
+    <footer>
+    </footer>
+
+</body>
+</html>
