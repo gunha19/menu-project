@@ -1,127 +1,132 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>희망사항 작성</title>
     <style>
-        /* 전역 스타일 */
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
+            background-color: #e9f3f9;
             margin: 0;
             padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
         }
 
-        /* 메시지 스타일 */
-        .message {
-            color: #ff6347;
-            font-size: 1rem;
+        .container {
+            width: 80%;  /* 화면 너비의 80%로 설정 */
+            max-width: 900px;  /* 최대 너비 설정 */
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
             text-align: center;
-            margin-bottom: 1rem;
+            font-size: 24px;
+            color: #005a9e;
+            margin-bottom: 20px;
         }
 
-        /* 폼 컨테이너 스타일 */
-        .form-container {
-            background: #fff;
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-            max-width: 400px;
-            width: 100%;
-        }
-
-        /* 폼 타이틀 스타일 */
-        .form-title {
-            font-size: 1.5rem;
-            margin-bottom: 1.5rem;
-            color: #333;
-            text-align: center;
-        }
-
-        /* 폼 그룹 스타일 */
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        /* 라벨 스타일 */
-        .form-label {
+        label {
+            font-size: 16px;
+            color: #333333;
+            margin-bottom: 10px;
             display: block;
-            margin-bottom: 0.5rem;
-            font-weight: bold;
-            color: #555;
         }
 
-        /* 입력 필드 스타일 */
-        .form-input, .form-textarea {
-            width: 100%;
-            padding: 0.8rem;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 1rem;
-            background-color: #f9f9f9;
-            transition: border-color 0.3s;
+        input[type="text"], textarea {
+            width: 100%;  /* 부모 요소의 너비에 맞게 100% 확장 */
+            padding: 12px;
+            font-size: 16px;
+            color: #333333;
+            border: 1px solid #a9d0e6;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+            background-color: #f7fbfd;
+            transition: border 0.3s ease, background-color 0.3s ease;
         }
 
-        /* 입력 필드 포커스 스타일 */
-        .form-input:focus, .form-textarea:focus {
-            border-color: #007bff;
+        input[type="text"]:focus, textarea:focus {
+            border: 1px solid #005a9e;
+            background-color: #ffffff;
             outline: none;
         }
 
-        /* 텍스트 영역 스타일 */
-        .form-textarea {
-            height: 100px;
+        textarea {
+            height: 30vh;  /* 화면 높이에 비례한 높이 */
             resize: none;
         }
 
-        /* 버튼 스타일 */
-        .form-button {
-            width: 100%;
-            padding: 0.8rem;
-            background-color: #007bff;
-            color: #fff;
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .button-container button {
+            width: 48%;  /* 버튼 너비 줄이기 */
+            padding: 10px;
+            font-size: 16px;  /* 버튼 글자 크기 줄이기 */
             border: none;
-            border-radius: 4px;
-            font-size: 1rem;
+            border-radius: 6px;
             cursor: pointer;
-            transition: background-color 0.3s;
+            transition: background-color 0.3s ease;
         }
 
-        /* 버튼 호버 스타일 */
-        .form-button:hover {
-            background-color: #0056b3;
+        .button-container .back-btn {
+            background-color: #f1f1f1;
+            color: #333;
         }
 
-        /* 버튼 포커스 스타일 */
-        .form-button:focus {
-            outline: none;
-            background-color: #004080;
+        .button-container .back-btn:hover {
+            background-color: #dcdcdc;
+        }
+
+        .button-container .submit-btn {
+            background-color: #005a9e;
+            color: #ffffff;
+        }
+
+        .button-container .submit-btn:hover {
+            background-color: #00457c;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #555555;
         }
     </style>
 </head>
 <body>
-    <div class="form-container">
-        <form action="/write_done" method="POST" class="styled-form"> <!-- write_done 으로 데이터 전송-->
-            <h2 class="form-title">희망사항 작성</h2>
-            <div class="form-group">
-                <!-- 제목 입력란, placeholder 사용 -->
-                <label for="title" class="form-label">제목</label>
-                <input type="text" placeholder="제목을 입력해주세요" name="title" id="title" class="form-input" required>
-            </div>
 
-            <div class="form-group">
-                <!-- 희망사항 내용 입력란, placeholder 사용 -->
-                <label for="contents" class="form-label">희망사항</label>
-                <textarea placeholder="희망사항을 입력해주세요. 예: ~가 나오면 좋겠다" name="contents" id="contents" class="form-textarea"></textarea>
-            </div>
+<div class="container">
+    <h2>희망사항 작성</h2>
+    <form action="/write_done" method="POST">
+        <label for="title">제목</label>
+        <input type="text" id="title" name="title" placeholder="제목을 입력해주세요" required>
 
-            <button type="submit" class="form-button">희망사항 보내기</button>
-        </form>
-    </div>
+        <label for="contents">희망사항</label>
+        <textarea id="contents" name="contents" placeholder="희망사항을 입력해주세요. 예: ~가 나오면 좋겠다" required></textarea>
+
+        <div class="button-container">
+            <!-- 뒤로 가기 버튼 -->
+            <button type="button" class="back-btn" onclick="window.history.back();">뒤로 가기</button>
+            <!-- 제출 버튼 -->
+            <button type="submit" class="submit-btn">제출</button>
+        </div>
+    </form>
+</div>
+
+<div class="footer">
+</div>
+
 </body>
 </html>

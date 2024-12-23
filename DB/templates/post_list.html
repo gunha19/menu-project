@@ -4,11 +4,11 @@
 {% endblock user %}
 
 {% block contents %}
-    <div class="post-list"> <!--게시물 없을 시-->
+    <div class="post-list"> <!-- 게시물 없을 시 -->
         {% if length == 0 %}
             <p>글 좀 써주세요</p>
-        {% else %} <!-- 게시물 있을 시시-->
-            {% for pid, post in post_list|list %} <!-- 반복문으로 목록 게시-->
+        {% else %} <!-- 게시물 있을 시 -->
+            {% for pid, post in post_list|list %} <!-- 반복문으로 목록 게시 -->
                 <a href="{{ url_for('post', pid=pid) }}" class="post-item">
                     <div class="post-content">
                         <div class="post-header">
@@ -20,6 +20,11 @@
                 </a>
             {% endfor %}
         {% endif %}
+    </div>
+
+    <!-- 뒤로 가기 버튼 -->
+    <div class="back-btn-container">
+        <button type="button" class="back-btn" onclick="window.history.back();">뒤로 가기</button>
     </div>
 {% endblock contents %}
 
@@ -80,6 +85,29 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 12px;
+        }
+
+        /* 뒤로 가기 버튼 스타일 */
+        .back-btn-container {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .back-btn {
+            background-color: #0056b3;
+            color: white;
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .back-btn:hover {
+            background-color: #003d80;
         }
 
         /* 반응형 디자인 - 모바일 화면 */

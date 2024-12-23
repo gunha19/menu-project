@@ -15,8 +15,10 @@
         <p>{{ post['contents'] }}</p>
     </div>
 
-    <!-- 희망사항 작성하기 버튼 -->
+    <!-- 희망사항 작성하기 및 뒤로 가기 버튼 -->
     <div class="write-btn-container">
+        <!-- 뒤로 가기 버튼 -->
+        <button type="button" class="back-btn" onclick="window.history.back();">뒤로 가기</button>
         <a href="{{ url_for('write') }}" class="write-btn">희망사항 작성하기</a>
     </div>
 </div>
@@ -110,7 +112,8 @@
 
     /* 버튼 스타일 */
     .write-btn-container {
-        text-align: center;  /* 버튼을 가운데로 정렬 */
+        display: flex;
+        justify-content: space-between;  /* 버튼을 양쪽으로 정렬 */
         margin-top: 20px;
     }
 
@@ -130,6 +133,24 @@
         background: #003d80;
     }
 
+    /* 뒤로 가기 버튼 스타일 */
+    .back-btn {
+        background: #f1f1f1; /* 배경 색상 변경 */
+        color: #333;
+        padding: 12px 24px;
+        font-size: 16px;
+        font-weight: bold;
+        border-radius: 30px;
+        border: 2px solid #ccc;
+        cursor: pointer;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        margin-right: auto; /* 뒤로 가기 버튼을 왼쪽에 고정 */
+    }
+
+    .back-btn:hover {
+        background: #e1e1e1;
+    }
+
     /* 반응형 디자인 */
     @media (max-width: 600px) {
         .post-title {
@@ -140,7 +161,7 @@
             font-size: 16px;
         }
 
-        .write-btn {
+        .write-btn, .back-btn {
             font-size: 14px;
             padding: 10px 20px;
         }
