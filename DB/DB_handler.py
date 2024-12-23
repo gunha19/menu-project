@@ -96,7 +96,7 @@ class DBModule:
     # Firestore에서 posts 데이터를 가져오기
         post_lists = self.db.child("posts").get().val()
     
-        print(post_lists)  # 데이터 구조를 확인
+        
 
     # post_lists가 None이 아니고, dict 형식인 경우에만 처리
         if post_lists and isinstance(post_lists, dict):
