@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>급식 정보</title>
     <style>
-        /* 기본 스타일 설정 */
+        /* 기본 */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -46,7 +46,7 @@
         .button-container {
             display: flex;
             justify-content: center;
-            margin: 20px 0;
+            margin: 3px 0; /* 상하 간격 조정*/
         }
 
         /* 버튼 스타일 */
@@ -54,12 +54,17 @@
             text-decoration: none;
             color: #fff;
             background-color: #007bff;
-            padding: 10px 20px;
+            padding: 8px 15px; /*버튼 안쪽 여백 조정*/
             border-radius: 5px;
-            margin: 0 10px;
+            margin: 0 10px; /*버튼 간 간격 조정*/
             text-align: center;
-            flex: 1;
-            font-size: 1.2em; /* 글자 크기 증가 */
+            display: flex;
+            align-items: center; /*글자 수직 방향으로 중앙*/
+            justify-content: center; /*글자 수평 방향으로 중앙*/
+            flex-shrink: 1;
+            min-width: 60px; /*버튼 가로*/
+            max-width: 50px; /*버튼 세로*/
+            font-size: 0.8em !important; /*글자 크기 조정*/
         }
 
         .user-links a:hover {
@@ -173,8 +178,8 @@
     </header>
 
     <div class="container">
-        {% if user != "Login" %}
-            <!-- 로그인 후 상태 -->
+        {% if user != "Login" %} <!--로그인 여부 확인-->
+            <!-- 로그인 상황 -->
             <span class="user-message">{{ user }}님, 안녕하세요!</span>  <!-- "희망사항 작성하기" 위로 이동 -->
             <a href="{{ url_for('logout') }}" class="logout-link">로그아웃</a>
 
@@ -183,7 +188,7 @@
                 <a href="{{ url_for('write') }}" class="two-line-text">희망사항<br>작성하기</a>
             </div>
         {% else %}
-            <!-- 비로그인 상태 -->
+            <!-- 비로그인 상황 -->
             <div class="button-container user-links">
                 <a href="{{ url_for('login') }}">로그인</a>
                 <a href="{{ url_for('signin') }}">회원가입</a>
@@ -193,11 +198,11 @@
 
         <h2>이번 주 급식 메뉴</h2>
 
-        <form method="POST" action="{{ url_for('index') }}">
+        <form method="POST" action="{{ url_for('index') }}"> <!--요일 선택하면 서버로 전송, POST 로 서버 데이터 수정, INDEX로 데이터 전송-->
             <div class="select-day-text">
-                <h3>요일을 선택하세요:</h3>
-                {% for day, date in week_dates %}
-                    <button type="submit" name="date" value="{{ date.strftime('%Y-%m-%d') }}">{{ day }}</button>
+                
+                {% for day, date in week_dates %} <!--Jinja2 반복문인데 인터넷넷 보고 따라해서 이해는 안됨-->
+                    <button type="submit" name="date" value="{{ date.strftime('%Y-%m-%d') }}">{{ day }}</button> <!--버튼 누르면 날짜형식 변환-->
                 {% endfor %}
             </div>
         </form>

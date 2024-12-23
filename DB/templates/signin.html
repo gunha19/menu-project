@@ -3,7 +3,7 @@
 {% block message %}
     {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
-            <p style="color: red; text-align: center; font-weight: bold;">{{ messages[0][1] }}</p>
+            <p style="color: red; text-align: center; font-weight: bold;">{{ messages[0][1] }}</p> <!--메세지 존재할 시 출력-->
         {% endif %}
     {% endwith %}
 {% endblock message %}
@@ -11,7 +11,7 @@
 {% block contents %}
     <div class="signup-container">
         <h2>회원가입</h2>
-        <form action="{{ url_for('signin_done') }}" method="get">
+        <form action="{{ url_for('signin_done') }}" method="get"> <!--signin_done으로 데이터 전송-->
             <div class="input-group">
                 <label for="email">이메일</label>
                 <input type="email" name="email" id="email" placeholder="이메일을 입력하세요" required>

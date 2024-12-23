@@ -4,11 +4,11 @@
 {% endblock user %}
 
 {% block contents %}
-    <div class="post-list">
+    <div class="post-list"> <!--게시물 없을 시-->
         {% if length == 0 %}
             <p>글 좀 써주세요</p>
-        {% else %}
-            {% for pid, post in post_list|list %}
+        {% else %} <!-- 게시물 있을 시시-->
+            {% for pid, post in post_list|list %} <!-- 반복문으로 목록 게시-->
                 <a href="{{ url_for('post', pid=pid) }}" class="post-item">
                     <div class="post-content">
                         <div class="post-header">

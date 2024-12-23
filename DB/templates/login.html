@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 
-{% block message %}
+{% block message %} <!--로그인 실패 시 -->
     {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
-            <p style="color: red; text-align: center; font-weight: bold;">{{ messages[0][1] }}</p>
+            <p style="color: red; text-align: center; font-weight: bold;">{{ messages[0][1] }}</p><!--얘가 뜸-->
         {% endif %}
     {% endwith %}
 {% endblock message %}
@@ -11,7 +11,7 @@
 {% block contents %}
     <div class="login-container">
         <h2>로그인</h2>
-        <form action="{{ url_for('login_done') }}" method="get"> 
+        <form action="{{ url_for('login_done') }}" method="get"> <!--폼 제출 시 데이터 전송-->
             <div class="input-group">
                 <label for="id">아이디</label>
                 <input type="text" name="id" id="id" placeholder="아이디를 입력하세요" required>
